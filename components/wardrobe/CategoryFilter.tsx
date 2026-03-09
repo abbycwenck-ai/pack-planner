@@ -15,14 +15,14 @@ export function CategoryFilter({ active, counts, onChange }: Props) {
     <div className="flex gap-2 overflow-x-auto pb-1 scrollbar-hide">
       <button
         onClick={() => onChange('all')}
-        className={`flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-all ${
+        className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
           active === 'all'
-            ? 'bg-stone-900 text-white'
-            : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+            ? 'bg-[#1B2A4A] text-white shadow-sm'
+            : 'bg-white border border-[#E8D5B0]/80 text-[#6B7A99] hover:border-[#C9A96E]/60 hover:text-[#1B2A4A]'
         }`}
       >
         All
-        <span className={`text-xs ${active === 'all' ? 'text-white/70' : 'text-stone-400'}`}>{total}</span>
+        <span className={`text-xs ${active === 'all' ? 'text-white/60' : 'text-[#C9A96E]'} font-bold`}>{total}</span>
       </button>
       {CATEGORIES.map(cat => {
         const count = counts[cat.value] ?? 0;
@@ -31,16 +31,16 @@ export function CategoryFilter({ active, counts, onChange }: Props) {
           <button
             key={cat.value}
             onClick={() => onChange(cat.value)}
-            className={`flex-shrink-0 flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-medium transition-all ${
+            className={`flex-shrink-0 flex items-center gap-1.5 px-4 py-1.5 rounded-full text-sm font-semibold transition-all ${
               active === cat.value
-                ? 'bg-stone-900 text-white'
-                : 'bg-stone-100 text-stone-600 hover:bg-stone-200'
+                ? 'bg-[#1B2A4A] text-white shadow-sm'
+                : 'bg-white border border-[#E8D5B0]/80 text-[#6B7A99] hover:border-[#C9A96E]/60 hover:text-[#1B2A4A]'
             }`}
           >
             <span>{cat.emoji}</span>
             {cat.label}
             {count > 0 && (
-              <span className={`text-xs ${active === cat.value ? 'text-white/70' : 'text-stone-400'}`}>{count}</span>
+              <span className={`text-xs font-bold ${active === cat.value ? 'text-white/60' : 'text-[#C9A96E]'}`}>{count}</span>
             )}
           </button>
         );

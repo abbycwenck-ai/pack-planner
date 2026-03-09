@@ -1,8 +1,19 @@
 @import "tailwindcss";
 
+@theme inline {
+  --color-cream: #FAF7F2;
+  --color-cream-dark: #F2EDE4;
+  --color-navy: #1B2A4A;
+  --color-navy-light: #2D3F63;
+  --color-gold: #C9A96E;
+  --color-gold-light: #E8D5B0;
+  --color-sage: #8B9E7E;
+  --color-blush: #E8C4B8;
+}
+
 :root {
-  --background: #fafaf9;
-  --foreground: #1c1917;
+  --background: #FAF7F2;
+  --foreground: #1B2A4A;
 }
 
 body {
@@ -19,4 +30,13 @@ body {
 }
 .scrollbar-hide::-webkit-scrollbar {
   display: none;
+}
+
+/* Outfit slot pulse animation */
+@keyframes slot-pulse {
+  0%, 100% { opacity: 0.5; }
+  50% { opacity: 1; }
+}
+.slot-pulse {
+  animation: slot-pulse 2s ease-in-out infinite;
 }

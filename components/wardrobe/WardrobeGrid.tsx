@@ -29,18 +29,18 @@ export function WardrobeGrid({ tripId }: Props) {
         </div>
         <button
           onClick={() => setAddModalOpen(true)}
-          className="flex-shrink-0 flex items-center gap-2 bg-stone-900 text-white px-4 py-2 rounded-xl text-sm font-medium hover:bg-stone-800 transition-colors"
+          className="flex-shrink-0 flex items-center gap-2 bg-[#1B2A4A] text-white px-4 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#2D3F63] transition-colors shadow-sm"
         >
           <Plus size={15} /> Add Item
         </button>
       </div>
 
-      {/* Summary row */}
+      {/* Summary pills */}
       {items.length > 0 && (
         <div className="flex flex-wrap gap-2">
           {CATEGORIES.filter(c => (categoryCounts[c.value] ?? 0) > 0).map(cat => (
-            <span key={cat.value} className="text-xs text-stone-500 bg-stone-100 px-2.5 py-1 rounded-full">
-              {cat.emoji} {categoryCounts[cat.value]} {cat.label.toLowerCase()}
+            <span key={cat.value} className="text-xs text-[#6B7A99] bg-white border border-[#E8D5B0]/60 px-3 py-1 rounded-full shadow-sm">
+              {cat.emoji} <span className="font-semibold text-[#1B2A4A]">{categoryCounts[cat.value]}</span> {cat.label.toLowerCase()}
             </span>
           ))}
         </div>
@@ -48,21 +48,19 @@ export function WardrobeGrid({ tripId }: Props) {
 
       {/* Grid */}
       {filtered.length === 0 ? (
-        <div className="text-center py-16">
-          <div className="w-14 h-14 bg-stone-100 rounded-2xl flex items-center justify-center mx-auto mb-3">
-            <Shirt size={24} className="text-stone-400" />
+        <div className="text-center py-20">
+          <div className="w-16 h-16 bg-white border-2 border-dashed border-[#E8D5B0] rounded-3xl flex items-center justify-center mx-auto mb-4">
+            <Shirt size={26} className="text-[#C9A96E]" />
           </div>
-          <p className="text-stone-500 font-medium">
-            {items.length === 0 ? 'Your wardrobe is empty' : `No ${activeCategory} yet`}
+          <p className="font-semibold text-[#1B2A4A] mb-1">
+            {items.length === 0 ? 'Your wardrobe is empty' : `No ${activeCategory} added yet`}
           </p>
-          <p className="text-stone-400 text-sm mt-1">
-            {items.length === 0
-              ? 'Add clothing items to start building your packing list'
-              : `Add a ${activeCategory} item to get started`}
+          <p className="text-[#8896B3] text-sm mb-5">
+            {items.length === 0 ? 'Start adding pieces to build your packing list' : `Add a ${activeCategory} item to get started`}
           </p>
           <button
             onClick={() => setAddModalOpen(true)}
-            className="mt-4 bg-stone-900 text-white px-5 py-2 rounded-xl text-sm font-medium hover:bg-stone-800 transition-colors"
+            className="bg-[#1B2A4A] text-white px-5 py-2.5 rounded-xl text-sm font-semibold hover:bg-[#2D3F63] transition-colors shadow-sm"
           >
             Add First Item
           </button>
@@ -78,13 +76,14 @@ export function WardrobeGrid({ tripId }: Props) {
               onDelete={() => deleteItem(item.id)}
             />
           ))}
-          {/* Add more tile */}
           <button
             onClick={() => setAddModalOpen(true)}
-            className="border-2 border-dashed border-stone-200 rounded-2xl flex flex-col items-center justify-center gap-1 text-stone-300 hover:border-stone-400 hover:text-stone-500 transition-all aspect-square min-h-[112px]"
+            className="border-2 border-dashed border-[#E8D5B0] rounded-2xl flex flex-col items-center justify-center gap-1.5 text-[#C9A96E] hover:border-[#C9A96E] hover:bg-white transition-all aspect-square min-h-[112px] group"
           >
-            <Plus size={20} />
-            <span className="text-xs">Add</span>
+            <div className="w-7 h-7 rounded-lg border-2 border-current flex items-center justify-center group-hover:scale-110 transition-transform">
+              <Plus size={14} />
+            </div>
+            <span className="text-xs font-semibold">Add</span>
           </button>
         </div>
       )}
